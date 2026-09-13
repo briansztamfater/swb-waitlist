@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stripe Weekly Brief — Waitlist</title>
+  <meta name="description" content="A 2-minute weekly brief for solo SaaS founders on Stripe: what changed, why it matters, and what to do about failed payments and churn risk.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --bg-elev: #111113;
+      --line: #27272a;
+      --text: #fafafa;
+      --muted: #a1a1aa;
+      --dim: #71717a;
+      --accent: #d4f5a3;
+      --accent-ink: #12200a;
+      --danger: #f5a3a3;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); color: var(--text); }
+    body {
+      font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 22px 64px;
+    }
+    header.nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 72px;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+    .brand {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .brand span { color: var(--dim); font-weight: 400; margin-left: 10px; }
+    .nav-meta { color: var(--dim); }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; }
+      header.nav { margin-bottom: 40px; }
+    }
+    .kicker {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 38em;
+      margin-bottom: 28px;
+    }
+    ul.bullets {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    ul.bullets li {
+      color: var(--text);
+      padding-left: 22px;
+      position: relative;
+      font-size: 15px;
+    }
+    ul.bullets li::before {
+      content: "";
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      position: absolute;
+      left: 2px; top: 0.55em;
+    }
+    .card {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px 24px 22px;
+    }
+    .card h2 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .card .micro {
+      color: var(--dim);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin: 14px 0 6px;
+    }
+    label .opt { color: var(--dim); font-weight: 400; }
+    .help { font-size: 12px; color: var(--dim); margin-top: 4px; }
+    input[type="email"], input[type="text"], select, textarea {
+      width: 100%;
+      background: #0c0c0e;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px 12px;
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+    textarea { min-height: 72px; resize: vertical; }
+    input:focus, select:focus, textarea:focus {
+      border-color: #52525b;
+    }
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 560px) { .row-2 { grid-template-columns: 1fr; } }
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+    .scale label.choice {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 500;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 4px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+    .scale input { display: none; }
+    .scale input:checked + span,
+    .scale label.choice:has(input:checked) {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+    .scale .hint {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--dim);
+      margin-top: 2px;
+    }
+    button.cta {
+      width: 100%;
+      margin-top: 20px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 16px;
+      font: inherit;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    button.cta:hover { filter: brightness(1.05); }
+    button.cta:disabled { opacity: 0.6; cursor: wait; }
+    .err { color: var(--danger); font-size: 13px; margin-top: 10px; display: none; }
+    .thanks {
+      display: none;
+      text-align: left;
+    }
+    .thanks h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 32px;
+      font-weight: 400;
+      margin: 8px 0 12px;
+    }
+    .thanks p { color: var(--muted); margin-bottom: 10px; }
+    footer {
+      margin-top: 80px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--dim);
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand">Stripe Weekly Brief <span>by NORTHLINE</span></div>
+      <div class="nav-meta">Waitlist · $29–49/mo when open</div>
+    </header>
+
+    <main class="hero">
+      <section>
+        <p class="kicker">Monday brief for solo SaaS</p>
+        <h1>Know why your MRR moved this week — before Monday chaos.</h1>
+        <p class="sub">A 2-minute weekly brief for solo SaaS founders on Stripe: what changed, why it matters, and what to do about failed payments and churn risk.</p>
+        <ul class="bullets">
+          <li>plain-English why MRR moved</li>
+          <li>action list: failed payments + churn risk</li>
+          <li>for founders without a finance hire</li>
+          <li>$29–49/mo when open</li>
+        </ul>
+      </section>
+
+      <section class="card" id="waitlist">
+        <div id="form-panel">
+          <h2>Join the waitlist — get early access</h2>
+          <p class="micro">No spam. One update when we’re ready. Unsubscribe anytime.</p>
+          <form id="waitlist-form" novalidate>
+            <input type="hidden" name="source" value="landing_v1">
+
+            <label for="email">Work email</label>
+            <input id="email" name="email" type="email" required placeholder="you@company.com" autocomplete="email">
+            <p class="help">We’ll only use this for waitlist updates.</p>
+
+            <label for="mrr_band">What’s your approximate Stripe MRR?</label>
+            <select id="mrr_band" name="mrr_band" required>
+              <option value="" disabled selected>Select a range</option>
+              <option>Under $5k</option>
+              <option>$5–20k</option>
+              <option>$20–80k</option>
+              <option>Over $80k</option>
+              <option>Not on Stripe</option>
+            </select>
+
+            <div class="row-2">
+              <div>
+                <label for="check_frequency">How often do you check Stripe (or MRR) today?</label>
+                <select id="check_frequency" name="check_frequency" required>
+                  <option value="" disabled selected>Select</option>
+                  <option>Daily</option>
+                  <option>Weekly</option>
+                  <option>Monthly</option>
+                  <option>Rarely</option>
+                </select>
+              </div>
+              <div>
+                <label for="biggest_hurt">Which hurts more right now?</label>
+                <select id="biggest_hurt" name="biggest_hurt" required>
+                  <option value="" disabled selected>Select</option>
+                  <option>Failed payments</option>
+                  <option>Silent churn</option>
+                  <option>Not knowing why MRR moved</option>
+                  <option>Too many tools / noise</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <label>When MRR changes, how clear is the “why”?</label>
+            <div class="scale" role="radiogroup" aria-label="Why clarity">
+              <label class="choice"><input type="radio" name="why_clarity" value="1" required> <span>1</span></label>
+              <label class="choice"><input type="radio" name="why_clarity" value="2"> <span>2</span></label>
+              <label class="choice"><input type="radio" name="why_clarity" value="3"> <span>3</span></label>
+              <label class="choice"><input type="radio" name="why_clarity" value="4"> <span>4</span></label>
+              <label class="choice"><input type="radio" name="why_clarity" value="5"> <span>5</span></label>
+              <div class="hint"><span>1 — I guess</span><span>5 — I always know</span></div>
+            </div>
+
+            <label for="would_pay">Would you pay $29–49/mo for a Monday brief: why MRR moved + 3 action to-dos?</label>
+            <select id="would_pay" name="would_pay" required>
+              <option value="" disabled selected>Select</option>
+              <option>Yes</option>
+              <option>Maybe</option>
+              <option>No</option>
+            </select>
+
+            <label for="pay_why">One sentence — why? <span class="opt">(optional)</span></label>
+            <input id="pay_why" name="pay_why" type="text" placeholder="e.g. I waste Sunday nights rebuilding Stripe reports">
+
+            <label for="biggest_headache">Biggest Stripe / MRR headache last month <span class="opt">(optional)</span></label>
+            <textarea id="biggest_headache" name="biggest_headache" placeholder="One concrete moment is enough"></textarea>
+
+            <label for="role">Role <span class="opt">(optional)</span></label>
+            <select id="role" name="role">
+              <option value="">Prefer not to say</option>
+              <option>Solo founder</option>
+              <option>Co-founder</option>
+              <option>Other</option>
+            </select>
+
+            <button class="cta" type="submit" id="submit-btn">Join the waitlist — get early access</button>
+            <p class="err" id="form-err">Please fill the required fields (email, MRR, frequency, why-clarity, what hurts, and would-pay).</p>
+          </form>
+        </div>
+
+        <div class="thanks" id="thanks-panel">
+          <p class="kicker">Waitlist</p>
+          <h2>You’re on the list.</h2>
+          <p>Check your inbox for a short confirmation. We’ll email only when early access opens.</p>
+          <p class="micro" style="margin-top:16px">No spam. One update when ready.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>NORTHLINE · Stripe Weekly Brief · validation only · not affiliated with Stripe, Inc.</div>
+      <div>No LLC yet · faceless · $0 stack</div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      // Paste Formspree form id after Brian creates the free form (CEO-gated login).
+      // Example endpoint: https://formspree.io/f/xxxxxxxx
+      var FORMSPREE_ENDPOINT = "https://formspree.io/f/xbjqpwor";
+
+      var form = document.getElementById("waitlist-form");
+      var err = document.getElementById("form-err");
+      var formPanel = document.getElementById("form-panel");
+      var thanks = document.getElementById("thanks-panel");
+      var btn = document.getElementById("submit-btn");
+
+      function scoreEntry(d) {
+        var s = 0;
+        if (d.mrr_band === "$5–20k" || d.mrr_band === "$20–80k") s += 3;
+        if (d.role === "Solo founder" || d.role === "Co-founder") s += 2;
+        if (Number(d.why_clarity) <= 2) s += 2;
+        if (d.would_pay === "Yes") s += 3;
+        else if (d.would_pay === "Maybe") s += 1;
+        var blob = ((d.pay_why || "") + " " + (d.biggest_headache || "")).toLowerCase();
+        if (/(failed|churn|mrr|dunning|reconcil|sunday|report)/.test(blob)) s += 1;
+        if (d.mrr_band === "Not on Stripe" || d.would_pay === "No") s -= 2;
+        if (s < 0) s = 0;
+        if (s > 10) s = 10;
+        var bucket = s >= 7 ? "Hot" : s >= 4 ? "Warm" : "Cold";
+        return { score: s, bucket: bucket };
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        err.style.display = "none";
+        if (!form.checkValidity()) {
+          err.style.display = "block";
+          form.reportValidity();
+          return;
+        }
+        if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.indexOf("REPLACE_") === 0) {
+          err.textContent = "Waitlist backend not configured yet. Try again soon.";
+          err.style.display = "block";
+          return;
+        }
+        btn.disabled = true;
+        var fd = new FormData(form);
+        var data = Object.fromEntries(fd.entries());
+        data.submitted_at = new Date().toISOString();
+        data.source = "landing_v1";
+        var scored = scoreEntry(data);
+        data.score = String(scored.score);
+        data.bucket = scored.bucket;
+        fd.set("submitted_at", data.submitted_at);
+        fd.set("source", data.source);
+        fd.set("score", data.score);
+        fd.set("bucket", data.bucket);
+        fd.set("_subject", "SWB waitlist · " + data.bucket + " · " + (data.email || ""));
+
+        fetch(FORMSPREE_ENDPOINT, {
+          method: "POST",
+          body: fd,
+          headers: { Accept: "application/json" }
+        }).then(function (res) {
+          if (!res.ok) throw new Error("submit_failed");
+          formPanel.style.display = "none";
+          thanks.style.display = "block";
+        }).catch(function () {
+          btn.disabled = false;
+          err.textContent = "Couldn’t submit just now. Check your connection and try again.";
+          err.style.display = "block";
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
