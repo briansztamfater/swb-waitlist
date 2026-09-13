@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Stripe Weekly Brief — Waitlist</title>
-  <meta name="description" content="A 2-minute weekly brief for solo SaaS founders on Stripe: what changed, why it matters, and what to do about failed payments and churn risk.">
+  <title>Stripe Weekly Brief — Monday MRR waitlist</title>
+  <meta name="description" content="Monday brief for solo SaaS on Stripe: why MRR moved, what matters, and 3 actions on failed payments and churn.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -220,32 +220,32 @@
   <div class="wrap">
     <header class="nav">
       <div class="brand">Stripe Weekly Brief <span>by NORTHLINE</span></div>
-      <div class="nav-meta">Waitlist · $29–49/mo when open</div>
+      <div class="nav-meta">Waitlist · early access</div>
     </header>
 
     <main class="hero">
       <section>
-        <p class="kicker">Monday brief for solo SaaS</p>
-        <h1>Know why your MRR moved this week — before Monday chaos.</h1>
-        <p class="sub">A 2-minute weekly brief for solo SaaS founders on Stripe: what changed, why it matters, and what to do about failed payments and churn risk.</p>
+        <p class="kicker">For solo SaaS founders on Stripe</p>
+        <h1>Know why your MRR moved — before Monday starts.</h1>
+        <p class="sub">A 2-minute Monday brief: what changed in Stripe, why it matters, and three actions on failed payments and churn risk. Built for founders without a finance hire.</p>
         <ul class="bullets">
-          <li>plain-English why MRR moved</li>
-          <li>action list: failed payments + churn risk</li>
-          <li>for founders without a finance hire</li>
-          <li>$29–49/mo when open</li>
+          <li>Plain-English “why” when MRR moves — no Sunday spreadsheet</li>
+          <li>Short action list: failed payments + churn risk</li>
+          <li>Made for solo / co-founders who check Stripe themselves</li>
+          <li>Early access when seats open ($29–49/mo)</li>
         </ul>
       </section>
 
       <section class="card" id="waitlist">
         <div id="form-panel">
-          <h2>Join the waitlist — get early access</h2>
-          <p class="micro">No spam. One update when we’re ready. Unsubscribe anytime.</p>
+          <h2>Join the waitlist</h2>
+          <p class="micro">~60 seconds. One email when early access opens. Unsubscribe anytime.</p>
           <form id="waitlist-form" novalidate>
-            <input type="hidden" name="source" value="landing_v1">
+            <input type="hidden" name="source" value="landing_v2">
 
             <label for="email">Work email</label>
-            <input id="email" name="email" type="email" required placeholder="you@company.com" autocomplete="email">
-            <p class="help">We’ll only use this for waitlist updates.</p>
+            <input id="email" name="email" type="email" required placeholder="you@startup.com" autocomplete="email">
+            <p class="help">Waitlist updates only — no product spam.</p>
 
             <label for="mrr_band">What’s your approximate Stripe MRR?</label>
             <select id="mrr_band" name="mrr_band" required>
@@ -291,7 +291,7 @@
               <div class="hint"><span>1 — I guess</span><span>5 — I always know</span></div>
             </div>
 
-            <label for="would_pay">Would you pay $29–49/mo for a Monday brief: why MRR moved + 3 action to-dos?</label>
+            <label for="would_pay">Would you pay $29–49/mo for that Monday brief?</label>
             <select id="would_pay" name="would_pay" required>
               <option value="" disabled selected>Select</option>
               <option>Yes</option>
@@ -300,10 +300,10 @@
             </select>
 
             <label for="pay_why">One sentence — why? <span class="opt">(optional)</span></label>
-            <input id="pay_why" name="pay_why" type="text" placeholder="e.g. I waste Sunday nights rebuilding Stripe reports">
+            <input id="pay_why" name="pay_why" type="text" placeholder="e.g. I rebuild Stripe reports every Sunday night">
 
             <label for="biggest_headache">Biggest Stripe / MRR headache last month <span class="opt">(optional)</span></label>
-            <textarea id="biggest_headache" name="biggest_headache" placeholder="One concrete moment is enough"></textarea>
+            <textarea id="biggest_headache" name="biggest_headache" placeholder="One concrete moment from last month is enough"></textarea>
 
             <label for="role">Role <span class="opt">(optional)</span></label>
             <select id="role" name="role">
@@ -313,23 +313,23 @@
               <option>Other</option>
             </select>
 
-            <button class="cta" type="submit" id="submit-btn">Join the waitlist — get early access</button>
-            <p class="err" id="form-err">Please fill the required fields (email, MRR, frequency, why-clarity, what hurts, and would-pay).</p>
+            <button class="cta" type="submit" id="submit-btn">Get early access</button>
+            <p class="err" id="form-err">Please complete the required fields (email, MRR, frequency, clarity, what hurts, and would-pay).</p>
           </form>
         </div>
 
         <div class="thanks" id="thanks-panel">
           <p class="kicker">Waitlist</p>
           <h2>You’re on the list.</h2>
-          <p>Check your inbox for a short confirmation. We’ll email only when early access opens.</p>
-          <p class="micro" style="margin-top:16px">No spam. One update when ready.</p>
+          <p>We’ll email once when early access opens. Nothing else until then.</p>
+          <p class="micro" style="margin-top:16px">No spam. Unsubscribe anytime.</p>
         </div>
       </section>
     </main>
 
     <footer>
-      <div>NORTHLINE · Stripe Weekly Brief · validation only · not affiliated with Stripe, Inc.</div>
-      <div>Built by NORTHLINE. Early access · unsubscribe anytime.</div>
+      <div>NORTHLINE · Stripe Weekly Brief · not affiliated with Stripe, Inc.</div>
+      <div>Early access · unsubscribe anytime.</div>
     </footer>
   </div>
 
@@ -378,7 +378,7 @@
         var fd = new FormData(form);
         var data = Object.fromEntries(fd.entries());
         data.submitted_at = new Date().toISOString();
-        data.source = "landing_v1";
+        data.source = "landing_v2";
         var scored = scoreEntry(data);
         data.score = String(scored.score);
         data.bucket = scored.bucket;
